@@ -6,7 +6,7 @@ on:
       profile:
         type: choice
         description: |
-          输入 软路由型号 可选值如下：
+          选择软路由型号
         required: true
         options:
           - ariaboard_photonicat
@@ -36,7 +36,7 @@ on:
       rootfs_partsize:
         description: '设置软件包大小 单位(MB)'
         required: true
-        default: '1024'
+        default: '2048'
       enable_pppoe:
         description: "是否配置PPPoE拨号信息?"
         required: true
