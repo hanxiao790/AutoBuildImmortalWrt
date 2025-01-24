@@ -6,45 +6,45 @@ on:
       profile:
         type: choice
         description: |
-          输入 软路由型号 可选值如下：
+          选择软路由型号
         required: true
         options:
           - ariaboard_photonicat
           - armsom_sige3
-          - ezpro_mrkaio-m68s 
-          - firefly_roc-rk3328-cc 
-          - firefly_roc-rk3568-pc 
-          - friendlyarm_nanopc-t4 
-          - friendlyarm_nanopi-r2c 
-          - friendlyarm_nanopi-r2c-plus 
-          - friendlyarm_nanopi-r2s 
-          - friendlyarm_nanopi-r4s 
-          - friendlyarm_nanopi-r4s-enterprise 
-          - friendlyarm_nanopi-r4se 
-          - friendlyarm_nanopi-r5c 
-          - friendlyarm_nanopi-r5s 
-          - huake_guangmiao-g4c 
-          - lunzn_fastrhino-r66s 
-          - lunzn_fastrhino-r68s 
-          - lyt_t68m 
-          - pine64_rockpro64 
-          - radxa_rock-pi-4a 
-          - radxa_rock-pi-e 
-          - xunlong_orangepi-r1-plus 
+          - ezpro_mrkaio-m68s
+          - firefly_roc-rk3328-cc
+          - firefly_roc-rk3568-pc
+          - friendlyarm_nanopc-t4
+          - friendlyarm_nanopi-r2c
+          - friendlyarm_nanopi-r2c-plus
+          - friendlyarm_nanopi-r2s
+          - friendlyarm_nanopi-r4s
+          - friendlyarm_nanopi-r4s-enterprise
+          - friendlyarm_nanopi-r4se
+          - friendlyarm_nanopi-r5c
+          - friendlyarm_nanopi-r5s
+          - huake_guangmiao-g4c
+          - lunzn_fastrhino-r66s
+          - lunzn_fastrhino-r68s
+          - lyt_t68m
+          - pine64_rockpro64
+          - radxa_rock-pi-4a
+          - radxa_rock-pi-e
+          - xunlong_orangepi-r1-plus
           - xunlong_orangepi-r1-plus-lts
-        default: 'friendlyarm_nanopi-r4s'
+        default: "friendlyarm_nanopi-r4s"
       rootfs_partsize:
-        description: '设置软件包大小 单位(MB)'
+        description: "设置软件包大小 单位(MB)"
         required: true
-        default: '1024'
+        default: "2048"
       enable_pppoe:
         description: "是否配置PPPoE拨号信息?"
         required: true
-        default: 'no'
+        default: "no"
         type: choice
         options:
-        - 'yes'
-        - 'no'
+          - "yes"
+          - "no"
       pppoe_account:
         description: "宽带账号 (若启用PPPoE)"
         required: false
@@ -76,12 +76,12 @@ jobs:
         run: |
           profiles="${{ github.event.inputs.profile }}"
           rootfs_partsize="${{ github.event.inputs.rootfs_partsize }}"
-          
+
           IFS=',' read -r -a profile_array <<< "$profiles"
-          
+
           for profile in "${profile_array[@]}"; do
             echo "Building for profile: $profile"
-            
+
             docker run --rm -i \
               --user root \
               -v "${{ github.workspace }}/bin:/home/build/immortalwrt/bin" \
